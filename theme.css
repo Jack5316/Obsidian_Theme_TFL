@@ -38,10 +38,10 @@
 	   widely available grotesques and fall back to the interface font. */
 	--font-poster: "Gill Sans Nova", "Gill Sans", "Gill Sans MT", johnston,
 		"Johnston ITC", "Trebuchet MS", var(--font-interface-theme),
-		var(--default-font);
+		var(--font-default);
 	--font-text-theme: var(--font-poster);
 	--font-interface-theme: "Gill Sans Nova", "Gill Sans", "Gill Sans MT",
-		"Trebuchet MS", var(--default-font);
+		"Trebuchet MS", var(--font-default);
 	--font-monospace-theme: "IBM Plex Mono", "Roboto Mono", var(--font-monospace-default);
 
 	/* Poster signage is set flush, tight and mostly uppercase */
@@ -72,8 +72,9 @@
 	--slider-thumb-radius: 0px;
 	--tag-radius: 0px;
 	--callout-radius: 0px;
+	--callout-border-width: 2px;
+	--callout-border-opacity: 1;
 	--code-radius: 0px;
-	--embed-radius: 0px;
 	--file-margins: var(--size-4-8) var(--size-4-6);
 
 	/* Signage borders instead of shadows */
@@ -85,7 +86,7 @@
 	--input-border-width: 2px;
 	--prompt-border-width: 3px;
 	--table-border-width: 2px;
-	--embed-border-left: 4px solid var(--tfl-red);
+	--embed-border-start: 4px solid var(--tfl-red);
 	--blockquote-border-thickness: 4px;
 	--hr-thickness: 3px;
 	--nav-indentation-guide-width: 2px;
@@ -216,7 +217,7 @@
 	--text-accent: var(--tfl-yellow);
 	--text-accent-hover: #ffe066;
 	--text-selection: rgb(255 204 0 / 28%);
-	--text-highlight-bg: rgb(255 204 0 / 42%);
+	--text-highlight-bg: var(--tfl-yellow);
 	--text-error: #ff6b5c;
 	--text-success: #4fd39a;
 	--h1-color: var(--tfl-yellow);
@@ -309,6 +310,11 @@ svg * {
 
 .theme-dark .workspace-tab-header-container {
 	border-bottom-color: var(--tfl-yellow);
+}
+
+.theme-dark .workspace-ribbon .side-dock-ribbon-action:hover {
+	background-color: var(--tfl-yellow);
+	color: var(--tfl-navy-ink);
 }
 
 .workspace-tab-header-inner-title {
@@ -411,8 +417,9 @@ svg * {
 }
 
 .callout {
-	border: 2px solid var(--callout-color-border, var(--background-modifier-border));
 	mix-blend-mode: normal;
+
+	--callout-title-color: var(--callout-color);
 }
 
 .callout-title {
@@ -423,34 +430,70 @@ svg * {
 	padding: var(--size-4-2) var(--size-4-3);
 }
 
+.callout-title,
+.callout-title-inner,
+.callout-icon .svg-icon {
+	color: var(--callout-color);
+}
+
 .callout[data-callout="note"],
 .callout[data-callout="info"] {
-	--callout-color: 16, 6, 159;
+	--callout-color: var(--tfl-line-piccadilly);
 }
 
 .callout[data-callout="warning"],
 .callout[data-callout="caution"],
 .callout[data-callout="attention"] {
-	--callout-color: 240, 164, 0;
+	--callout-color: var(--tfl-yellow-deep);
 }
 
 .callout[data-callout="danger"],
 .callout[data-callout="error"],
 .callout[data-callout="bug"],
 .callout[data-callout="failure"] {
-	--callout-color: 200, 16, 46;
+	--callout-color: var(--tfl-red);
 }
 
 .callout[data-callout="success"],
 .callout[data-callout="tip"],
 .callout[data-callout="done"] {
-	--callout-color: 0, 125, 81;
+	--callout-color: var(--tfl-green);
 }
 
 .callout[data-callout="quote"],
 .callout[data-callout="abstract"],
 .callout[data-callout="summary"] {
-	--callout-color: 91, 194, 206;
+	--callout-color: var(--tfl-teal);
+}
+
+.theme-dark .callout[data-callout="note"],
+.theme-dark .callout[data-callout="info"] {
+	--callout-color: #8aaaff;
+}
+
+.theme-dark .callout[data-callout="warning"],
+.theme-dark .callout[data-callout="caution"],
+.theme-dark .callout[data-callout="attention"] {
+	--callout-color: #ffda33;
+}
+
+.theme-dark .callout[data-callout="danger"],
+.theme-dark .callout[data-callout="error"],
+.theme-dark .callout[data-callout="bug"],
+.theme-dark .callout[data-callout="failure"] {
+	--callout-color: #ff756b;
+}
+
+.theme-dark .callout[data-callout="success"],
+.theme-dark .callout[data-callout="tip"],
+.theme-dark .callout[data-callout="done"] {
+	--callout-color: #4fd39a;
+}
+
+.theme-dark .callout[data-callout="quote"],
+.theme-dark .callout[data-callout="abstract"],
+.theme-dark .callout[data-callout="summary"] {
+	--callout-color: #74d8df;
 }
 
 /* Tags read like line labels on a tube map */
