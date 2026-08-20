@@ -15,6 +15,8 @@ high-contrast palette built for clear reading and strong visual hierarchy.
 
 ![TFL theme, dark mode](screenshots/dark.png)
 
+These screenshots were captured in Obsidian 1.13.7.
+
 ## Installation
 
 Once published, install **TFL** from Obsidian's community themes directory:
