@@ -1,0 +1,642 @@
+/* ==========================================================================
+   TFL — an Obsidian theme inspired by Transport for London poster design.
+
+   Roundel red, Johnston-style geometry, tube-map line colours and the flat
+   two-tone palette of mid-century transport posters.
+   ========================================================================== */
+
+.theme-light,
+.theme-dark {
+	/* Poster palette */
+	--tfl-red: #c8102e;
+	--tfl-red-dark: #9b0c23;
+	--tfl-red-ink: #7a081c;
+	--tfl-navy: #1c3f94;
+	--tfl-navy-deep: #10265c;
+	--tfl-navy-ink: #0a1838;
+	--tfl-yellow: #fc0;
+	--tfl-yellow-deep: #f0a400;
+	--tfl-yellow-ink: #5f3b00;
+	--tfl-cream: #f6f1e3;
+	--tfl-cream-deep: #eae2cd;
+	--tfl-teal: #5bc2ce;
+	--tfl-teal-ink: #004b55;
+	--tfl-green: #007d51;
+	--tfl-green-ink: #004f36;
+	--tfl-piccadilly-ink: #0d0875;
+	--tfl-magenta: #a0005e;
+	--tfl-platform: #a9aaae;
+	--tfl-platform-dark: #6f7175;
+
+	/* Tube line colours, used for accents and callouts */
+	--tfl-line-central: #e1251b;
+	--tfl-line-circle: #ffcd00;
+	--tfl-line-district: #007d32;
+	--tfl-line-piccadilly: #10069f;
+	--tfl-line-victoria: #00a3e0;
+	--tfl-line-jubilee: #7c878e;
+	--tfl-line-metropolitan: #870f54;
+	--tfl-line-overground: #ee7623;
+	--tfl-line-elizabeth: #6950a1;
+
+	/* Johnston is proprietary, so approximate its humanist geometry with
+	   widely available grotesques and fall back to the interface font. */
+	--font-poster: "Gill Sans Nova", "Gill Sans", "Gill Sans MT", johnston,
+		"Johnston ITC", "Trebuchet MS", var(--font-interface-theme),
+		var(--font-default);
+	--font-text-theme: var(--font-poster);
+	--font-interface-theme: "Gill Sans Nova", "Gill Sans", "Gill Sans MT",
+		"Trebuchet MS", var(--font-default);
+	--font-monospace-theme: "IBM Plex Mono", "Roboto Mono", var(--font-monospace-default);
+
+	/* Poster signage is set flush, tight and mostly uppercase */
+	--h1-weight: 700;
+	--h2-weight: 700;
+	--h3-weight: 700;
+	--h4-weight: 600;
+	--h5-weight: 600;
+	--h6-weight: 600;
+	--h1-line-height: 1.05;
+	--h2-line-height: 1.1;
+	--bold-weight: 700;
+	--line-height-normal: 1.55;
+
+	/* Flat, hard-edged geometry: no rounding anywhere */
+	--radius-s: 0px;
+	--radius-m: 0px;
+	--radius-l: 0px;
+	--radius-xl: 0px;
+	--input-radius: 0px;
+	--button-radius: 0px;
+	--tab-radius: 0px;
+	--tab-radius-active: 0px;
+	--modal-radius: 0px;
+	--checkbox-radius: 0px;
+	--toggle-radius: 0px;
+	--toggle-thumb-radius: 0px;
+	--slider-thumb-radius: 0px;
+	--tag-radius: 0px;
+	--callout-radius: 0px;
+	--callout-border-width: 2px;
+	--callout-border-opacity: 1;
+	--code-radius: 0px;
+	--file-margins: var(--size-4-8) var(--size-4-6);
+
+	/* Signage borders instead of shadows */
+	--border-width: 2px;
+	--divider-width: 2px;
+	--divider-width-hover: 3px;
+	--tab-outline-width: 0px;
+	--modal-border-width: 3px;
+	--input-border-width: 2px;
+	--prompt-border-width: 3px;
+	--table-border-width: 2px;
+	--embed-border-start: 4px solid var(--tfl-red);
+	--blockquote-border-thickness: 4px;
+	--hr-thickness: 3px;
+	--nav-indentation-guide-width: 2px;
+	--indentation-guide-width: 2px;
+	--shadow-s: none;
+	--shadow-l: none;
+	--tag-border-width: 2px;
+	--tag-padding-x: var(--size-2-2);
+	--tag-weight: 600;
+	--checkbox-border-color: var(--tfl-navy);
+	--slider-track-height: 4px;
+}
+
+/* --------------------------------------------------------------------------
+   Light mode — cream poster stock, navy ink, roundel red accents
+   -------------------------------------------------------------------------- */
+
+.theme-light {
+	color-scheme: light;
+
+	--accent-h: 349;
+	--accent-s: 85%;
+	--accent-l: 42%;
+	--color-red: var(--tfl-red);
+	--color-blue: var(--tfl-navy);
+	--color-yellow: var(--tfl-yellow-deep);
+	--color-green: var(--tfl-green);
+	--color-cyan: var(--tfl-teal);
+	--color-purple: var(--tfl-line-elizabeth);
+	--color-pink: var(--tfl-magenta);
+	--color-orange: var(--tfl-line-overground);
+	--background-primary: var(--tfl-cream);
+	--background-primary-alt: var(--tfl-cream-deep);
+	--background-secondary: var(--tfl-cream-deep);
+	--background-secondary-alt: #ded4bb;
+	--background-modifier-border: #cbbf9f;
+	--background-modifier-border-hover: var(--tfl-navy);
+	--background-modifier-border-focus: var(--tfl-red);
+	--background-modifier-hover: rgb(28 63 148 / 9%);
+	--background-modifier-active-hover: rgb(200 16 46 / 14%);
+	--background-modifier-form-field: #fffaf0;
+	--background-modifier-success: var(--tfl-green);
+	--background-modifier-error: var(--tfl-red-dark);
+	--background-modifier-message: var(--tfl-navy-deep);
+	--text-normal: var(--tfl-navy-ink);
+	--text-muted: #4a5878;
+	--text-faint: #8189a0;
+	--text-on-accent: var(--tfl-cream);
+	--text-accent: var(--tfl-red);
+	--text-accent-hover: var(--tfl-red-dark);
+	--text-selection: rgb(255 204 0 / 50%);
+	--text-highlight-bg: var(--tfl-yellow);
+	--text-error: var(--tfl-red-dark);
+	--text-success: var(--tfl-green);
+	--h1-color: var(--tfl-red);
+	--h2-color: var(--tfl-navy);
+	--h3-color: var(--tfl-navy-deep);
+	--h4-color: var(--text-normal);
+	--h5-color: var(--text-muted);
+	--h6-color: var(--text-muted);
+	--titlebar-background: var(--tfl-navy);
+	--titlebar-background-focused: var(--tfl-navy-deep);
+	--titlebar-text-color: var(--tfl-cream);
+	--titlebar-text-color-focused: #fff;
+	--ribbon-background: var(--tfl-navy);
+	--ribbon-background-collapsed: var(--tfl-navy);
+	--tab-text-color-focused-active: var(--tfl-red);
+	--tab-background-active: var(--tfl-cream);
+	--tab-outline-color: transparent;
+	--interactive-normal: var(--tfl-cream-deep);
+	--interactive-hover: #ded4bb;
+	--interactive-accent: var(--tfl-red);
+	--interactive-accent-hover: var(--tfl-red-dark);
+	--code-background: #efe6cf;
+	--code-normal: var(--tfl-navy-deep);
+	--inline-title-color: var(--tfl-navy-ink);
+	--nav-item-color-active: var(--tfl-red);
+	--nav-indentation-guide-color: #d3c7a8;
+	--indentation-guide-color: #d5c9aa;
+	--indentation-guide-color-active: var(--tfl-red);
+	--table-header-background: var(--tfl-navy);
+	--table-row-alt-background: rgb(28 63 148 / 5%);
+	--blockquote-border-color: var(--tfl-yellow-deep);
+	--hr-color: var(--tfl-navy);
+	--bold-color: var(--tfl-red);
+	--italic-color: var(--tfl-navy);
+	--graph-line: #cbbf9f;
+	--graph-node: var(--tfl-navy);
+	--graph-node-tag: var(--tfl-red);
+	--graph-node-unresolved: var(--tfl-platform);
+}
+
+/* --------------------------------------------------------------------------
+   Dark mode — night-service navy, cream signage type
+   -------------------------------------------------------------------------- */
+
+.theme-dark {
+	color-scheme: dark;
+
+	--accent-h: 48;
+	--accent-s: 100%;
+	--accent-l: 50%;
+	--color-red: #ff5a4e;
+	--color-blue: #6fa8ff;
+	--color-yellow: var(--tfl-yellow);
+	--color-green: #34b37b;
+	--color-cyan: var(--tfl-teal);
+	--color-purple: #a992e0;
+	--color-pink: #e35fa4;
+	--color-orange: var(--tfl-line-overground);
+	--background-primary: #0d1a3a;
+	--background-primary-alt: #0a1530;
+	--background-secondary: #091327;
+	--background-secondary-alt: #060e1e;
+	--background-modifier-border: #22355f;
+	--background-modifier-border-hover: var(--tfl-yellow);
+	--background-modifier-border-focus: var(--tfl-yellow);
+	--background-modifier-hover: rgb(255 204 0 / 12%);
+	--background-modifier-active-hover: rgb(255 204 0 / 20%);
+	--background-modifier-form-field: #0a1633;
+	--background-modifier-success: var(--tfl-green);
+	--background-modifier-error: var(--tfl-red);
+	--background-modifier-message: var(--tfl-navy-deep);
+	--text-normal: #f3ecda;
+	--text-muted: #b3bdd6;
+	--text-faint: #77839f;
+	--text-on-accent: var(--tfl-navy-ink);
+	--text-accent: var(--tfl-yellow);
+	--text-accent-hover: #ffe066;
+	--text-selection: rgb(255 204 0 / 28%);
+	--text-highlight-bg: var(--tfl-yellow);
+	--text-error: #ff6b5c;
+	--text-success: #4fd39a;
+	--h1-color: var(--tfl-yellow);
+	--h2-color: #ffe066;
+	--h3-color: var(--tfl-teal);
+	--h4-color: var(--text-normal);
+	--h5-color: var(--text-muted);
+	--h6-color: var(--text-muted);
+	--titlebar-background: #060e1e;
+	--titlebar-background-focused: #091327;
+	--titlebar-text-color: var(--tfl-cream);
+	--titlebar-text-color-focused: var(--tfl-yellow);
+	--ribbon-background: #060e1e;
+	--ribbon-background-collapsed: #060e1e;
+	--tab-text-color-focused-active: var(--tfl-yellow);
+	--tab-background-active: #0d1a3a;
+	--tab-outline-color: transparent;
+	--interactive-normal: #12224a;
+	--interactive-hover: #1a2f61;
+	--interactive-accent: var(--tfl-yellow);
+	--interactive-accent-hover: var(--tfl-yellow-deep);
+	--code-background: #0a1633;
+	--code-normal: var(--tfl-teal);
+	--inline-title-color: var(--tfl-cream);
+	--nav-item-color-active: var(--tfl-yellow);
+	--nav-indentation-guide-color: #22355f;
+	--indentation-guide-color: #22355f;
+	--indentation-guide-color-active: var(--tfl-yellow);
+	--table-header-background: #12224a;
+	--table-row-alt-background: rgb(255 204 0 / 5%);
+	--blockquote-border-color: var(--tfl-yellow);
+	--hr-color: var(--tfl-yellow);
+	--bold-color: var(--tfl-yellow);
+	--italic-color: var(--tfl-teal);
+	--graph-line: #22355f;
+	--graph-node: var(--tfl-cream);
+	--graph-node-tag: var(--tfl-yellow);
+	--graph-node-unresolved: var(--tfl-platform-dark);
+}
+
+/* --------------------------------------------------------------------------
+   Signage geometry — square caps and mitred joins on every icon and stroke
+   -------------------------------------------------------------------------- */
+
+svg * {
+	stroke-linecap: square;
+	stroke-linejoin: miter;
+	rx: 0;
+	ry: 0;
+}
+
+.workspace-tab-header.is-active::before,
+.workspace-tab-header.is-active::after {
+	display: none;
+}
+
+.menu {
+	padding: var(--size-2-1);
+	border-width: var(--border-width);
+}
+
+.menu-item {
+	padding: var(--size-4-1) var(--size-4-2);
+}
+
+.menu-separator {
+	margin: var(--size-2-1) calc(var(--size-2-1) * -1);
+}
+
+/* --------------------------------------------------------------------------
+   Chrome — the workspace reads as a station platform
+   -------------------------------------------------------------------------- */
+
+.workspace-ribbon {
+	border-right: none;
+}
+
+.workspace-ribbon .side-dock-ribbon-action {
+	color: var(--tfl-cream);
+}
+
+.workspace-ribbon .side-dock-ribbon-action:hover {
+	background-color: var(--tfl-red);
+	color: #fff;
+}
+
+.workspace-tab-header-container {
+	border-bottom: var(--divider-width) solid var(--tfl-navy);
+}
+
+.theme-dark .workspace-tab-header-container {
+	border-bottom-color: var(--tfl-yellow);
+}
+
+.theme-dark .workspace-ribbon .side-dock-ribbon-action:hover {
+	background-color: var(--tfl-yellow);
+	color: var(--tfl-navy-ink);
+}
+
+.theme-light .titlebar .clickable-icon,
+.theme-light .titlebar .titlebar-button,
+.theme-light .workspace-tab-header-container .workspace-tab-header-inner-icon,
+.theme-light .sidebar-toggle-button {
+	color: var(--tfl-cream);
+	opacity: 1;
+}
+
+.theme-light .titlebar .clickable-icon:hover,
+.theme-light .titlebar .titlebar-button:hover,
+.theme-light .workspace-tab-header-container .workspace-tab-header-inner:hover
+	.workspace-tab-header-inner-icon,
+.theme-light .sidebar-toggle-button:hover {
+	background-color: var(--tfl-red);
+	color: #fff;
+}
+
+.workspace-tab-header-inner-title {
+	font-family: var(--font-interface-theme);
+	font-weight: 600;
+	letter-spacing: 0.02em;
+}
+
+.workspace-tab-header.is-active .workspace-tab-header-inner-title {
+	border-bottom: 3px solid var(--tfl-red);
+}
+
+.theme-dark .workspace-tab-header.is-active .workspace-tab-header-inner-title {
+	border-bottom-color: var(--tfl-yellow);
+}
+
+.workspace-leaf-content[data-type="markdown"] .view-header {
+	border-bottom: var(--divider-width) solid var(--background-modifier-border);
+}
+
+.nav-header,
+.nav-files-container {
+	font-family: var(--font-interface-theme);
+}
+
+.nav-folder-title-content {
+	font-weight: 600;
+	letter-spacing: 0.01em;
+}
+
+.nav-file-title.is-active {
+	border-left: 4px solid var(--tfl-red);
+}
+
+.theme-dark .nav-file-title.is-active {
+	border-left-color: var(--tfl-yellow);
+}
+
+.status-bar {
+	border-top: var(--divider-width) solid var(--background-modifier-border);
+	font-family: var(--font-interface-theme);
+	letter-spacing: 0.03em;
+	text-transform: uppercase;
+	font-size: var(--font-ui-smaller);
+}
+
+/* --------------------------------------------------------------------------
+   Editor typography — poster headline hierarchy
+   -------------------------------------------------------------------------- */
+
+.markdown-preview-view h1,
+.markdown-source-view.mod-cm6 [class~="HyperMD-header-1"],
+.inline-title {
+	text-transform: uppercase;
+	letter-spacing: -0.01em;
+}
+
+.markdown-preview-view h2,
+.markdown-source-view.mod-cm6 [class~="HyperMD-header-2"] {
+	text-transform: uppercase;
+	letter-spacing: 0.01em;
+}
+
+.markdown-preview-view h3,
+.markdown-source-view.mod-cm6 [class~="HyperMD-header-3"] {
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+}
+
+.inline-title {
+	border-bottom: 4px solid var(--tfl-red);
+	padding-bottom: var(--size-2-2);
+}
+
+.theme-dark .inline-title {
+	border-bottom-color: var(--tfl-yellow);
+}
+
+.markdown-preview-view h1,
+.markdown-source-view.mod-cm6 [class~="HyperMD-header-1"] {
+	border-bottom: 3px solid var(--tfl-navy);
+	padding-bottom: var(--size-2-1);
+}
+
+.theme-dark .markdown-preview-view h1,
+.theme-dark .markdown-source-view.mod-cm6 [class~="HyperMD-header-1"] {
+	border-bottom-color: var(--tfl-yellow);
+}
+
+.markdown-rendered mark,
+.cm-highlight {
+	color: var(--tfl-navy-ink);
+	padding: 0 0.15em;
+}
+
+/* Roundel-style bar behind blockquotes and callouts */
+.markdown-rendered blockquote {
+	background-color: var(--background-primary-alt);
+	padding: var(--size-4-3) var(--size-4-4);
+}
+
+.callout {
+	mix-blend-mode: normal;
+
+	--callout-title-color: var(--callout-color);
+}
+
+.callout-title {
+	font-family: var(--font-interface-theme);
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	font-weight: 700;
+	padding: var(--size-4-2) var(--size-4-3);
+}
+
+.theme-light .callout-title,
+.theme-light .callout-title-inner,
+.theme-light .callout-icon .svg-icon {
+	color: var(--callout-title-color);
+}
+
+.callout[data-callout="note"],
+.callout[data-callout="info"] {
+	--callout-color: var(--tfl-line-piccadilly);
+}
+
+.theme-light .callout[data-callout="note"],
+.theme-light .callout[data-callout="info"] {
+	--callout-title-color: var(--tfl-piccadilly-ink);
+}
+
+.callout[data-callout="warning"],
+.callout[data-callout="caution"],
+.callout[data-callout="attention"] {
+	--callout-color: var(--tfl-yellow-deep);
+}
+
+.theme-light .callout[data-callout="warning"],
+.theme-light .callout[data-callout="caution"],
+.theme-light .callout[data-callout="attention"] {
+	--callout-title-color: var(--tfl-yellow-ink);
+}
+
+.callout[data-callout="danger"],
+.callout[data-callout="error"],
+.callout[data-callout="bug"],
+.callout[data-callout="failure"] {
+	--callout-color: var(--tfl-red);
+}
+
+.theme-light .callout[data-callout="danger"],
+.theme-light .callout[data-callout="error"],
+.theme-light .callout[data-callout="bug"],
+.theme-light .callout[data-callout="failure"] {
+	--callout-title-color: var(--tfl-red-ink);
+}
+
+.callout[data-callout="success"],
+.callout[data-callout="tip"],
+.callout[data-callout="done"] {
+	--callout-color: var(--tfl-green);
+}
+
+.theme-light .callout[data-callout="success"],
+.theme-light .callout[data-callout="tip"],
+.theme-light .callout[data-callout="done"] {
+	--callout-title-color: var(--tfl-green-ink);
+}
+
+.callout[data-callout="quote"],
+.callout[data-callout="abstract"],
+.callout[data-callout="summary"] {
+	--callout-color: var(--tfl-teal);
+}
+
+.theme-light .callout[data-callout="quote"],
+.theme-light .callout[data-callout="abstract"],
+.theme-light .callout[data-callout="summary"] {
+	--callout-title-color: var(--tfl-teal-ink);
+}
+
+.theme-dark .callout[data-callout="note"],
+.theme-dark .callout[data-callout="info"] {
+	--callout-color: #8aaaff;
+}
+
+.theme-dark .callout[data-callout="warning"],
+.theme-dark .callout[data-callout="caution"],
+.theme-dark .callout[data-callout="attention"] {
+	--callout-color: #ffda33;
+}
+
+.theme-dark .callout[data-callout="danger"],
+.theme-dark .callout[data-callout="error"],
+.theme-dark .callout[data-callout="bug"],
+.theme-dark .callout[data-callout="failure"] {
+	--callout-color: #ff756b;
+}
+
+.theme-dark .callout[data-callout="success"],
+.theme-dark .callout[data-callout="tip"],
+.theme-dark .callout[data-callout="done"] {
+	--callout-color: #4fd39a;
+}
+
+.theme-dark .callout[data-callout="quote"],
+.theme-dark .callout[data-callout="abstract"],
+.theme-dark .callout[data-callout="summary"] {
+	--callout-color: #74d8df;
+}
+
+/* Tags read like line labels on a tube map */
+a.tag,
+.markdown-rendered a.tag {
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	font-size: var(--font-ui-smaller);
+	border: var(--tag-border-width) solid var(--tfl-navy);
+	background-color: var(--tfl-yellow);
+	color: var(--tfl-navy-ink);
+}
+
+.theme-dark a.tag,
+.theme-dark .markdown-rendered a.tag {
+	border-color: var(--tfl-yellow);
+	background-color: transparent;
+	color: var(--tfl-yellow);
+}
+
+/* Internal links keep the roundel underline */
+.markdown-rendered a,
+.cm-s-obsidian .cm-hmd-internal-link {
+	text-decoration: none;
+	border-bottom: 2px solid currentcolor;
+}
+
+/* Tables as timetable panels */
+.markdown-rendered th {
+	color: var(--tfl-cream);
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	font-weight: 700;
+}
+
+.theme-dark .markdown-rendered th {
+	color: var(--tfl-yellow);
+}
+
+/* Horizontal rules become platform bars */
+.markdown-rendered hr {
+	border-top-style: solid;
+}
+
+/* Buttons and inputs: flat signage plates */
+button:not(.clickable-icon),
+input[type="text"],
+input[type="search"],
+textarea,
+select {
+	font-family: var(--font-interface-theme);
+	letter-spacing: 0.02em;
+}
+
+button.mod-cta {
+	text-transform: uppercase;
+	font-weight: 700;
+	letter-spacing: 0.06em;
+}
+
+.checkbox-container {
+	border: 2px solid var(--tfl-navy);
+}
+
+.theme-dark .checkbox-container {
+	border-color: var(--tfl-yellow);
+}
+
+.suggestion-item.is-selected,
+.prompt-instructions .prompt-instruction-command {
+	font-family: var(--font-interface-theme);
+}
+
+.prompt {
+	border: var(--prompt-border-width) solid var(--tfl-red);
+}
+
+.theme-dark .prompt {
+	border-color: var(--tfl-yellow);
+}
+
+.modal {
+	border: var(--modal-border-width) solid var(--tfl-navy);
+}
+
+.theme-dark .modal {
+	border-color: var(--tfl-yellow);
+}
+
+.modal-title {
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	font-weight: 700;
+}
